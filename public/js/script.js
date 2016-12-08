@@ -1,3 +1,5 @@
+// attribution - Bobby King - Open Weather Data API (GA lab) --> https://git.generalassemb.ly/wdi-nyc-60/open_weather_search-client_fetch
+
 'use strict';
 console.log('JS linked');
 
@@ -22,7 +24,7 @@ console.log('JS linked');
     let total = Object.values(totalCab)
 
     data = {
-      labels: ["Mon", "tue", "wed", "thur", "fri", "sat", "sun"],
+      labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
       datasets: [
         {
           label: 'Total',
