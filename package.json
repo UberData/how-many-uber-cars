@@ -18,6 +18,7 @@
   "homepage": "https://github.com/svall/how-many-uber-cars#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "chart.js": "^2.4.0",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
