@@ -8,42 +8,90 @@ console.log('JS linked');
   const input = document.querySelector('input');
   const ctx = document.querySelector('#zip-graph').getContext('2d');
 
-  // function renderGraph(chart, data) { //passing the chart (from ctx) and data
-  //   const days = data.list.map(u => u.dt_txt);
-  //   const amount = data.list.map(u => u.main.temp);
-  //   const data = {
-  //     labels: days, //x-axis, from the times array above
-  //     datasets: [
-  //       {
-  //         label: 'Temperature',
-  //         fill: false,
-  //         borderColor: '#529ee8',
-  //         data: amount //y-axis, come from times array
-  //       }
-  //     ]
-  //   };
-  //   const options = {
-  //       scales: {
-  //         yAxes: [{
-  //           scaleLabel: {
-  //             display: true,
-  //             labelString: '# vehicles' //label for y-axis
-  //           }
-  //         }],
-  //         xAxes: [{
-  //           scaleLabel: {
-  //             display: true,
-  //             labelString: 'Days' //label for the x-axis
-  //           }
-  //         }]
-  //       }
-  //     };
-  //   const carsChart = new Chart(chart, { //create an instance of Chart
-  //     type: 'line',
-  //     options, //same thing as options: options
-  //     data
-  //   });
-  // }
+  function renderGraph(chart, data) { //passing the chart (from ctx) and data
+    // console.log('graph data ', data.day, data.g_taxi);
+    console.log(data.length);
+    for(let i = 0; i < data.length; i++) {
+      console.log('in for loop ', data.day, data.g_taxi);
+    }
+    // const arr = [];
+    // const dataArr = arr.push(data.day, data.g_taxi);
+    // console.log('arr is ', data);
+    // const days = data.map(u => u.day);
+    // Attribution: http://stackoverflow.com/questions/14810506/map-function-for-objects-instead-of-arrays
+    // DAYS: ============
+    const days = Object.keys(data.day).reduce(function(previous, current) {
+      previous[current] = data.day[current];
+      return previous;
+    }, {});
+    console.log('DAYS new one ', days);
+
+    // G-TAXI: ============
+    const g_taxi = Object.keys(data.g_taxi).reduce(function(previous, current) {
+      previous[current] = data.g_taxi[current];
+      return previous;
+    }, {});
+    console.log('G_TAXI new one ', g_taxi);
+
+    // TOTAL: ============
+    const total = Object.keys(data.total).reduce(function(previous, current) {
+      previous[current] = data.total[current];
+      return previous;
+    }, {});
+    console.log('TOTAL new one ', total);
+
+    // UBER: ============
+    const uber = Object.keys(data.uber).reduce(function(previous, current) {
+      previous[current] = data.uber[current];
+      return previous;
+    }, {});
+    console.log('UBER new one ', uber);
+
+    // Y_TAXI: ============
+    const y_taxi = Object.keys(data.y_taxi).reduce(function(previous, current) {
+      previous[current] = data.y_taxi[current];
+      return previous;
+    }, {});
+    console.log('Y_TAXI new one ', y_taxi);
+
+    console.log('old one ', data);
+
+
+    // console.log('this is days ', day);
+    // const amount = data.map(u => u.main.temp);
+    data = {
+      labels: days, //x-axis, from the times array above
+      datasets: [
+        {
+          label: 'Temperature',
+          fill: false,
+          borderColor: '#529ee8',
+          data: amount //y-axis, come from times array
+        }
+      ]
+    };
+    options = {
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: '# vehicles' //label for y-axis
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Days' //label for the x-axis
+            }
+          }]
+        }
+      };
+    const carsChart = new Chart(chart, { //create an instance of Chart
+      type: 'line',
+      options, //same thing as options: options
+      data
+    });
+  }
 
   function search(zip) {
     const zipInput = parseInt(input.value);
@@ -56,7 +104,7 @@ console.log('JS linked');
       document.querySelector("#selectedZip").innerHTML = `Your selected zip is: ${zipInput}`
       // document.querySelector('#zip-code').textContent = data.zip.name; //also works with innerText
       // console.log('data is ', data);
-      // renderGraph(ctx, data); //here we call the renderGraph function, adding the info from the API
+      renderGraph(ctx, data); //here we call the renderGraph function, adding the info from the API
     })
     .catch((err) => console.log(err));
   }
