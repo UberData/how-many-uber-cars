@@ -14,6 +14,8 @@ console.log('JS linked');
   function renderGraph(chart, data) {
 
     const greenCab = data.g_taxi
+    // const test = Object.keys(data)
+    // console.log(test)
     const yellowCab = data.y_taxi
     const uberCab = data.uber
     const totalCab = data.total
@@ -30,22 +32,22 @@ console.log('JS linked');
           label: 'Total',
           fill: true,
           fillColor: '#529ee8',
-          borderColor: '#529ee8',
+          borderColor: 'red',
           data: total
         },
         {
           label: 'yellow cabs',
           fill: true,
           fillColor: '#529ee8',
-          borderColor: '#529ee8',
+          borderColor: 'yellow',
           data: yellow
         }
         ,
         {
           label: 'green cabs',
           fill: true,
-          fillColor: '#529ee8',
-          borderColor: '#529ee8',
+          fillColor: 'green',
+          borderColor: 'green',
           data: green
         }
         ,
@@ -53,7 +55,7 @@ console.log('JS linked');
           label: 'uber cabs',
           fill: true,
           fillColor: '#529ee8',
-          borderColor: '#529ee8',
+          borderColor: 'black',
           data: uber
         }
 
